@@ -1,4 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/interfaces/reducer';
+import { reset } from '../counter.action';
 
 @Component({
   selector: 'app-grandson',
@@ -6,14 +9,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./grandson.component.scss'],
 })
 export class GrandsonComponent implements OnInit {
-  @Input() counter: number = 0;
-  @Output() counterChanged = new EventEmitter();
-  constructor() {}
+  counter: number = 0;
+  constructor(private store: Store<AppState>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store
+      .select('counter')
+      .subscribe((counter) => (this.counter = counter));
+  }
 
   reset() {
-    this.counter = 0;
-    this.counterChanged.emit(this.counter);
+    this.store.dispatch(reset());
   }
 }
