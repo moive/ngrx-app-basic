@@ -5,16 +5,14 @@ import { AppComponent } from './app.component';
 import { SonComponent } from './counter/son/son.component';
 import { GrandsonComponent } from './counter/grandson/grandson.component';
 
+// NgRx
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './counter/counter.reducer';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    SonComponent,
-    GrandsonComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
+  declarations: [AppComponent, SonComponent, GrandsonComponent],
+  imports: [BrowserModule, StoreModule.forRoot({ counter: counterReducer })],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
