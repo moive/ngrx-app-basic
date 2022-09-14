@@ -1,1 +1,18 @@
-<p>son works!</p>
+<h3>Counter from Son</h3>
+<h4>{{ counter }}</h4>
+
+<div class="row">
+  <div class="col">
+    <button (click)="multiply()" class="btn btn-secondary mx-3">Multiply</button
+    ><button (click)="divide()" class="btn btn-primary">Divide</button>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col">
+    <app-grandson
+      [counter]="counter"
+      (counterChanged)="resetGrandson($event)"
+    ></app-grandson>
+  </div>
+</div>
